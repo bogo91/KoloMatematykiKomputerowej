@@ -17,7 +17,7 @@ class Cell:
         :type dim: int
         :type self.cofaces: list
         :type self.faces: list
-        :ivar id: unikatowy numer lda kazdego cella 
+        :ivar id: unikatowy numer lda kazdego cella
         """
         self.dim = dim
         self.label = label
@@ -31,18 +31,28 @@ class Cell:
         :type cell: Cell
         :param cell: node do dodania
         """
-        if cell not in self.cofaces:
-            assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
-            self.cofaces.add(cell)
-            cell.append_face(self)
+        assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
+        self.cofaces.add(cell)
 
     def append_face(self, cell):
         """ Dodaje cell'a 'w dol' w grafie
         :type cell: Cell
         :param cell: node do dodania
         """
-        if cell not in self.faces:
-            assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
-            self.faces.add(cell)
-            cell.append_coface(self)
+        assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
+        self.faces.add(cell)
 
+    @staticmethod
+    def connect(cell_one, cell_two):
+
+        """metoda laczy dwa celle
+
+        :param cell_one: pierwszy cell
+        :param cell_two: drugi cell
+        """
+        if cell_one.dim + 1 == cell_two.dim:
+            cell_one.append_face(cell_two)
+            cell_two.append_coface(cell_one)
+        elif cell_one.dim - 1 == cell_two.dim:
+            cell_one.append_coface(cell_two)
+            cell_two.append_face(cell_one)
