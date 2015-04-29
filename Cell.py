@@ -33,6 +33,6 @@ class Cell:
         """
         if cell not in self.faces:
             assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
-            self.faces.add(cell.append_coface(cell))
+            self.faces.add(cell)
             cell.append_coface(self)
 
