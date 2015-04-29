@@ -13,22 +13,26 @@ class Cell:
         """
         self.dim = dim
         self.name = name
-        self.faces = []
-        self.cofaces = []
+        self.faces = set()
+        self.cofaces = set()
 
     def append_coface(self, cell):
         """Dodaje cell'a 'w gore' w grafie
         :type cell: Cell
         :param cell: node do dodania
         """
-        assert isinstance(cell, object), "Blad! Dodany obiekt nie jest nodem"
-        self.cofaces.append(cell)
+        if cell not in self.cofaces:
+            assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
+            self.cofaces.add(cell)
+            cell.append_face(self)
 
     def append_face(self, cell):
         """ Dodaje cell'a 'w dol' w grafie
         :type cell: Cell
         :param cell: node do dodania
         """
-        assert isinstance(cell, object), "Blad! Dodany obiekt nie jest nodem"
-        self.faces.append(cell)
+        if cell not in self.faces:
+            assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
+            self.faces.add(cell.append_coface(cell))
+            cell.append_coface(self)
 
