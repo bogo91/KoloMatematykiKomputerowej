@@ -1,5 +1,5 @@
 __author__ = 'malin'
-from Drzewko import *
+from Tree import *
 
 r""" Wejscie z pliku Test1"""
 
