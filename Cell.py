@@ -1,6 +1,5 @@
 __author__ = 'malin'
 
-
 class Cell:
     def __init__(self, dim: int, name: str=""):
         """ Inicjalizuje zmienne wewnetrzne obiektu

@@ -1,4 +1,4 @@
-__author__ = 'malin'
+__author__ = 'malin' 
 
 from Cell import Cell
 
