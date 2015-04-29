@@ -1,4 +1,4 @@
-__author__ = 'malin' 
+__author__ = 'malin'
 
 from Cell import Cell
 
@@ -14,8 +14,8 @@ class Skeleton:
 
     def print_all(self):
         """Wypisuje nazwy wszystkich nodow ze spacja po kazdym """
-        for node in self.cellCollection:
-            print(node.name+" ")
+        for cell in self.cellCollection:
+            print(cell.label+" ")
 
     def append(self, cell: Cell):
         """
