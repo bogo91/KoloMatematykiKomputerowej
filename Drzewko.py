@@ -6,14 +6,15 @@ class Node:
     def __init__(self, N, name="noName"):
         self.N = N
         self.name = name
-        self.listup = []
-        self.listdown = []
+        self.faces = []
+        self.cofaces = []
 
-    def append_up(self, node):
-        self.listup.append(node)
 
-    def append_down(self, node):
-        self.listdown.append(node)
+    def append_coface(self, node):
+        self.cofaces.append(node)
+
+    def append_face(self, node):
+        self.faces.append(node)
 
 
 class Level:
@@ -30,7 +31,7 @@ class Level:
         self.nodeCollection.append(node)
 
 
-class Structure:
+class Complex:
 
     def __init__(self):
         self.levelCollection = []
@@ -49,14 +50,8 @@ class Structure:
                 level.print_all()
                 print("")
 
-class Cubes:
-    def __init__(self):
-        self.cube_list =[]
-    def append(self,cube):
-        self.cube_list.append(cube)
 
-    def print(self):
-        for cube in self.cube_list:
-            print("Cube")
-            if cube :
-                print(cube)
+
+
+
+
