@@ -7,7 +7,7 @@ class Cell:
     """
     sum = 0
 
-    def __init__(self, dim: int, label: str=None):
+    def __init__(self, dim: int, label=None):
         """ Inicjalizuje zmienne wewnetrzne obiektu
 
         :type self.id: int
@@ -42,6 +42,12 @@ class Cell:
         assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
         self.faces.add(cell)
 
+    def connect(self, cell):
+        """metoda laczy cell z obecnym
+
+        :param cell: pierwszy cell
+        """
+        Cell.connect(self, cell)
     @staticmethod
     def connect(cell_one, cell_two):
 

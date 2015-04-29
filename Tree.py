@@ -26,12 +26,11 @@ class Skeleton:
 
 
 class Complex:
-
-    def __init__(self):
+    def __init__(self, list):
         """
         :type self.skeletonCollection: list
         """
-        self.skeletonCollection = []
+        self.skeletonCollection = list
 
     def append(self, skeleton: Skeleton):
         self.skeletonCollection.append(skeleton)
