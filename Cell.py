@@ -1,20 +1,30 @@
 __author__ = 'malin'
 
+
 class Cell:
-    def __init__(self, dim: int, name: str=""):
+    """
+        :ivar sum: suma wszytskich cellow
+    """
+    sum = 0
+
+    def __init__(self, dim: int, label: str=None):
         """ Inicjalizuje zmienne wewnetrzne obiektu
 
+        :type self.id: int
         :param dim: wymiar node'a
-        :param name: domyslnie pusty, nazwa cell'a
-        :type name: str
+        :param label: domyslnie pusty, nazwa cell'a
+        :type label: str
         :type dim: int
         :type self.cofaces: list
         :type self.faces: list
+        :ivar id: unikatowy numer lda kazdego cella 
         """
         self.dim = dim
-        self.name = name
+        self.label = label
         self.faces = set()
         self.cofaces = set()
+        self.id = Cell.sum
+        Cell.sum += 1
 
     def append_coface(self, cell):
         """Dodaje cell'a 'w gore' w grafie
