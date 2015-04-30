@@ -1,10 +1,12 @@
-__author__ = 'malin'
+__author__ = 'malin & ingwarus' #dobra dobra :P
 
-"""
-Cell to uogólnienie sympleksu/kostki/elementu jakiegoś bardziej chorego kompleksu
-z tego będziemy sobie dziedziczyć do sympleksu i kostki.
-"""
+
 class Cell:
+    """
+    Cell to uogólnienie sympleksu/kostki/elementu jakiegoś bardziej chorego kompleksu
+    z tego będziemy sobie dziedziczyć do sympleksu i kostki.
+    """
+
     """
         :ivar sum: liczba wszytskich cellow
     """
