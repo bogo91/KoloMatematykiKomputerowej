@@ -1,11 +1,14 @@
 __author__ = 'malin'
 
-
+"""
+Cell to uogólnienie sympleksu/kostki/elementu jakiegoś bardziej chorego kompleksu
+z tego będziemy sobie dziedziczyć do sympleksu i kostki.
+"""
 class Cell:
     """
-        :ivar sum: suma wszytskich cellow
+        :ivar sum: liczba wszytskich cellow
     """
-    sum = 0
+    id_counter = 0
 
     def __init__(self, dim: int, label=None):
         """ Inicjalizuje zmienne wewnetrzne obiektu
@@ -23,8 +26,8 @@ class Cell:
         self.label = label
         self.faces = set()
         self.cofaces = set()
-        self.id = Cell.sum
-        Cell.sum += 1
+        self.id = Cell.id_counter
+        Cell.id_counter += 1
 
     def append_coface(self, cell):
         """Dodaje cell'a 'w gore' w grafie
