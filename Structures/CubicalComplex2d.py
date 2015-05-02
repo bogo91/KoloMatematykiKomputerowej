@@ -1,6 +1,7 @@
 __author__ = 'malin'
 from Structures.Interval import Interval
 
+
 class Cube():
     def __init__(self):
         self.dim
@@ -11,10 +12,16 @@ class CubicalComplex2d():
         self.compute(products)
 
     def compute(self, products):
-        for obj in products:
-            self.make_product(obj)
+        """
+                                    :param products: lista interwalow
+        """
+        for interval in products:
+            self.make_product(interval)
 
     def make_product(self, obj):
+        """
+                                    :param obj: interwal w postaci tekstowej
+        """
         pointSet = Interval.transform(obj)
         if len(pointSet) == 4:
             print("Mamy pelny w srodku kwadrat!")
