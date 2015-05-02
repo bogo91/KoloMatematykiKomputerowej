@@ -1,4 +1,4 @@
-__author__ = 'malin & ingwarus' #dobra dobra :P
+__author__ = 'malin & ingwarus'  # dobra dobra :P
 
 
 class Cell:
@@ -8,7 +8,7 @@ class Cell:
     """
 
     """
-        :ivar sum: liczba wszytskich cellow
+        :ivar id_counter: liczba wszytskich cellow
     """
     id_counter = 0
 
@@ -16,13 +16,13 @@ class Cell:
         """ Inicjalizuje zmienne wewnetrzne obiektu
 
         :type self.id: int
-        :param dim: wymiar node'a
+        :param dim: wymiar cell'a
         :param label: domyslnie pusty, nazwa cell'a
         :type label: str
         :type dim: int
         :type self.cofaces: list
         :type self.faces: list
-        :ivar id: unikatowy numer lda kazdego cella
+        :ivar id: unikatowy numer dla kazdego cella
         """
         self.dim = dim
         self.label = label
@@ -50,9 +50,10 @@ class Cell:
     def connect(self, cell):
         """metoda laczy cell z obecnym
 
-        :param cell: pierwszy cell
+        :param cell: do polaczenia cell
         """
         Cell.connect(self, cell)
+
     @staticmethod
     def connect(cell_one, cell_two):
 
@@ -67,3 +68,7 @@ class Cell:
         elif cell_one.dim - 1 == cell_two.dim:
             cell_one.append_coface(cell_two)
             cell_two.append_face(cell_one)
+            
+    def __str__(self):
+        return "Cell {self.label}: id = {self.id}, dim = {self.dim}\n".format(self=self)
+

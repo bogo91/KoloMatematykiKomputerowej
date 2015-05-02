@@ -2,6 +2,7 @@ __author__ = 'malin'
 
 from Cell import Cell
 
+
 class Skeleton:
     def __init__(self, dim: int):
         """
@@ -12,10 +13,15 @@ class Skeleton:
         self.dim = dim
         self.cellCollection = []
 
-    def print_all(self):
-        """Wypisuje nazwy wszystkich nodow ze spacja po kazdym """
-        for cell in self.cellCollection:
-            print(cell.label+" ")
+    def __str__(self):
+        tmp = "Skeleton "
+        tmp += "wymiaru {wymiar}".format(wymiar=self.dim)
+        if self.cellCollection:
+            tmp += " z nastepujacymi cellami : \n"
+            for cell in self.cellCollection:
+                tmp += str(cell)
+        return tmp
+
 
     def append(self, cell: Cell):
         """
@@ -35,14 +41,17 @@ class Complex:
     def append(self, skeleton: Skeleton):
         self.skeletonCollection.append(skeleton)
 
-    def print_all(self):
-        for skeleton in self.skeletonCollection:
-            if skeleton.cellCollection:  # jesli kolekcja jest niepusta
-                print("Poziom nr")
-                print(skeleton.dim)
-                skeleton.print_all()
-                print("")
-
+    def __str__(self):
+        tmp = "To jest complex "
+        if self.skeletonCollection:
+            tmp +="z lista zawierajaca :\n\n"
+            for skeleton in self.skeletonCollection:
+                if skeleton.cellCollection:
+                    tmp+="poziom {poziom}:\n".format(poziom=skeleton.dim)
+                    tmp+=str(skeleton)+"\n"
+        else:
+            tmp+="ktory jest obecnie pusty "
+        return tmp
 
 
 
