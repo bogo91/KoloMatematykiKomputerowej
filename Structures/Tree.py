@@ -41,7 +41,7 @@ class Complex:
 
     def __str__(self):
         if self.skeletonCollection:
-            tmp = "To jest complex z lista zawierajaca :\n\n%s" % "".join(map(lambda x: "poziom {poziom}:\n%s\n" % x, filter(lambda x: x.cellCollection, self.skeletonCollection)))
+            tmp = "To jest complex z lista zawierajaca :\n\n%s" % "".join(map(lambda x: "poziom %s:\n\n" % x, filter(lambda x: x.cellCollection, self.skeletonCollection)))
         else:
             tmp = "To jest complex, ktory jest obecnie pusty"
         return tmp
