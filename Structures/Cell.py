@@ -48,17 +48,17 @@ class Cell:
 
     def connect(self, cell):
         """
-                                    metoda laczy cell z obecnym
+                                    metoda probuje laczyc dwa celle - zwraca True jesli się udalo
                                     
                                     :param cell: do polaczenia cell
         """
-        Cell.connect(self, cell)
+        return Cell.connect(self, cell)
 
     @staticmethod
     def connect(cell_one, cell_two):
 
         """
-                                    metoda laczy dwa celle
+                                    metoda probuje laczyc dwa celle - zwraca True jesli się udalo
                                     :param cell_one: pierwszy cell
                                     :param cell_two: drugi cell
         """
@@ -68,6 +68,9 @@ class Cell:
         elif cell_one.dim - 1 == cell_two.dim:
             cell_one.append_coface(cell_two)
             cell_two.append_face(cell_one)
+        else:
+            return False
+        return True
             
     def __str__(self):
         return "Cell {self.label}: id = {self.id}, dim = {self.dim}\n".format(self=self)
