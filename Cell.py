@@ -3,10 +3,10 @@ __author__ = 'malin & ingwarus'  # dobra dobra :P
 
 class Cell:
     """
-                        Cell to uogólnienie sympleksu/kostki/elementu jakiegoś bardziej chorego kompleksu
-                        z tego będziemy sobie dziedziczyć do sympleksu i kostki.
+                            Cell to uogólnienie sympleksu/kostki/elementu jakiegoś bardziej chorego kompleksu
+                            z tego będziemy sobie dziedziczyć do sympleksu i kostki.
 
-                        :ivar id_counter: liczba wszytskich cellow
+                            :ivar id_counter: liczba wszytskich cellow
     """
     id_counter = 0
 
@@ -33,22 +33,25 @@ class Cell:
     def append_coface(self, cell):
         """ 
                                     Dodaje cell'a 'w gore' w grafie
+                                    
                                     :type cell: Cell
                                     :param cell: node do dodania
         """
-        assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
         self.cofaces.add(cell)
 
     def append_face(self, cell):
-        """ Dodaje cell'a 'w dol' w grafie
+        """ 
+                                    Dodaje cell'a 'w dol' w grafie
+                                    
                                     :type cell: Cell
                                     :param cell: node do dodania
         """
-        assert isinstance(cell, Cell), "Blad! Dodany obiekt nie jest cellem"
         self.faces.add(cell)
 
     def connect(self, cell):
-        """metoda laczy cell z obecnym
+        """
+                                    metoda laczy cell z obecnym
+                                    
                                     :param cell: do polaczenia cell
         """
         Cell.connect(self, cell)
@@ -56,10 +59,11 @@ class Cell:
     @staticmethod
     def connect(cell_one, cell_two):
 
-        """metoda laczy dwa celle
+        """
+                                    metoda laczy dwa celle
 
-        :param cell_one: pierwszy cell
-        :param cell_two: drugi cell
+                                    :param cell_one: pierwszy cell
+                                    :param cell_two: drugi cell
         """
         if cell_one.dim + 1 == cell_two.dim:
             cell_one.append_face(cell_two)
