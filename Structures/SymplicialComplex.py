@@ -1,6 +1,6 @@
 __author__ = 'malin'
 
-from Tree import Complex
+from Structures.Tree import Complex
 
 
 class SymplicialComplex(Complex):

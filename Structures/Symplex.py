@@ -1,5 +1,5 @@
 __author__ = 'malin'
-from Cell import Cell
+from Structures import Cell
 
 
 class Symplex(Cell):
