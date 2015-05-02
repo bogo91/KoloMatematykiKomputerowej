@@ -1,5 +1,5 @@
-__author__ = 'malin'
 from Structures.Interval import Interval
+__author__ = 'malin'
 
 
 class Cube():
@@ -30,5 +30,3 @@ class CubicalComplex2d():
         print("O wspolrzednych")
         for point in pointSet:
             print(point)
-
-

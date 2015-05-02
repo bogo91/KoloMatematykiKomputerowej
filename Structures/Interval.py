@@ -19,7 +19,7 @@ class Interval():
                                     Potrzebny do porownywania i dodawania elementow w secie
                                     :return:obiekt skonwertowany do stringa
         """
-        return "({left},{right})".format(left=self.left, right=self.right)
+        return "(%s,%s)" % (self.left, self.right)
 
     def __hash__(self):
         """
@@ -42,7 +42,7 @@ class Interval():
         return pointList
 
     def __str__(self):
-        return "({x},{y})".format(x=self.left, y=self.right)
+        return "(%s,%s)" % (self.left, self.right)
 
     @staticmethod
     def cross(intervalA, intervalB):

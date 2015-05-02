@@ -14,12 +14,10 @@ class Skeleton:
         self.cellCollection = []
 
     def __str__(self):
-        tmp = "Skeleton "
-        tmp += "wymiaru {wymiar}".format(wymiar=self.dim)
         if self.cellCollection:
-            tmp += " z nastepujacymi cellami : \n"
-            for cell in self.cellCollection:
-                tmp += str(cell)
+            tmp = "Skeleton wymiaru %d z nastepujacymi cellami : \n %s" % (self.dim, " ".join(self.cellCollection))
+        else:
+            tmp = "Skeleton wymiaru %d" % self.dim
         return tmp
 
 
@@ -42,15 +40,10 @@ class Complex:
         self.skeletonCollection.append(skeleton)
 
     def __str__(self):
-        tmp = "To jest complex "
         if self.skeletonCollection:
-            tmp +="z lista zawierajaca :\n\n"
-            for skeleton in self.skeletonCollection:
-                if skeleton.cellCollection:
-                    tmp+="poziom {poziom}:\n".format(poziom=skeleton.dim)
-                    tmp+=str(skeleton)+"\n"
+            tmp = "To jest complex z lista zawierajaca :\n\n%s" % "".join(map(lambda x: "poziom {poziom}:\n%s\n" % x, filter(lambda x: x.cellCollection, self.skeletonCollection)))
         else:
-            tmp+="ktory jest obecnie pusty "
+            tmp = "To jest complex, ktory jest obecnie pusty"
         return tmp
 
 

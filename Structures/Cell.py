@@ -10,7 +10,7 @@ class Cell:
     id_counter = 0
 
     def __init__(self, dim: int, label=None):
-        """ 
+        """
                                 Inicjalizuje zmienne wewnetrzne obiektu
                                 :type self.id: int
                                 :param dim: wymiar cell'a
@@ -29,7 +29,7 @@ class Cell:
         Cell.id_counter += 1
 
     def append_coface(self, cell):
-        """ 
+        """
                                     Dodaje cell'a 'w gore' w grafie
                                     
                                     :type cell: Cell
@@ -38,7 +38,7 @@ class Cell:
         self.cofaces.add(cell)
 
     def append_face(self, cell):
-        """ 
+        """
                                     Dodaje cell'a 'w dol' w grafie
                                     
                                     :type cell: Cell
@@ -71,6 +71,6 @@ class Cell:
         else:
             return False
         return True
-            
+
     def __str__(self):
-        return "Cell {self.label}: id = {self.id}, dim = {self.dim}\n".format(self=self)
+        return "Cell %s: id = %s, dim = %s\n" % (self.label, self.id, self.id)
