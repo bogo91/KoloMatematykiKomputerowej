@@ -1,4 +1,5 @@
-from Structures.Interval_for_cubical_complex import Intervals, Interval
+import copy
+from Structures.CubesCreator.Interval_for_cubical_complex import Intervals, Interval
 
 __author__ = 'malin'
 
@@ -50,12 +51,6 @@ class ElementaryCubesCreator:
                     self.compute_intervals(intervals)
                     interval.r_un_degenerate()
 
-import copy
-
-from Structures.Interval_for_cubical_complex import Intervals
-
-
-__author__ = 'malin'
 
 
 class Cube:
