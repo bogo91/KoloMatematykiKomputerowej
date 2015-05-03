@@ -13,7 +13,7 @@ class CubicalSignature:
             face = []
             for i in self.sig:
                 if i is interval:
-                    face.append(i[0])
+                    face.append([i[0]])
                 else:
                     face.append(i)
             faces.append(face)
@@ -21,7 +21,7 @@ class CubicalSignature:
                 face = []
                 for i in self.sig:
                     if i is interval:
-                        face.append(i[1])
+                        face.append([i[1]])
                     else:
                         face.append(i)
                 faces.append(face)
