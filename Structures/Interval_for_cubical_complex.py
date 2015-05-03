@@ -2,20 +2,14 @@ __author__ = 'malin'
 import copy
 
 
-class Interval():
-    count = 0
-
+class Interval:
     def __init__(self, x, y):
         self.left = x
         self.right = y
-    def __len__(self):
-        if self.is_degenerated(self):
-            return 1
-        else:
-            return 2
+
     def __eq__(self, other):
         """
-                                    Potrzebny do porownywania elementow w secie
+                                    Potrzebny do porownywania elementow
                                     :param other: interval ktory porownujemy z selfem
                                     :return: logiczna wartosc czy self interval jest rowny other
         """
@@ -23,90 +17,100 @@ class Interval():
 
     def __repr__(self):
         """
-                                    Potrzebny do porownywania i dodawania elementow w secie
+                                    Reprezentacja w postaci lancucha znakow
                                     :return:obiekt skonwertowany do stringa
         """
         return self.__str__()
 
     def __hash__(self):
         """
-                                    Potrzebny do porownywania i dodawania elementow w secie
+                                    :return ta sama wartosc dla obiektow ktore sa rowne
         """
         return hash(self.__repr__())
 
-    @staticmethod
-    def transform(obj):
-        """
-                                    Zamienia
-                                    :param obj: obiekt do transofmracji
-                                    :return: liste punktow utworzonych z obj
-        """
-        intervallist = []
-        for interval in obj:
-            interval = Interval(interval[0], interval[1])
-            intervallist.append(interval)
-        pointList = Interval.cross(intervallist[0], intervallist[1])
-        return pointList
-
     def __str__(self):
-        if (self.left == self.right):
+        """
+
+                                    :return: Reprezentacja obiektu w postaci stringa
+        """
+        if self.left == self.right:
             return "[%s]" % self.left
         return "[%s,%s]" % (self.left, self.right)
 
-    @staticmethod
-    def cross(intervalA, intervalB):
-        """
-                                    :return: zbior punktow utworzonych z interwalow A i B
-                                    Przyklad :
-                                        [0, 0], [2, 3] zwroci : (0, 2), (0, 3)
-                                        [0, 1], [2, 3] zwroci : (0, 2), (0, 3), (1, 2), (1, 3)
-        """
-        out = set()
-        out.add(Interval(intervalA.left, intervalB.right))
-        out.add(Interval(intervalA.left, intervalB.left))
-        out.add(Interval(intervalA.right, intervalB.left))
-        out.add(Interval(intervalA.right, intervalB.right))
-        return out
-
     def l_degenerate(self):
+        """
+                                   Utworzenie z przedzialu singletona o lewej wspolrzednej [0,1] - > 0
+        """
         self.tmp = self.right
         self.right = self.left
 
     def r_degenerate(self):
+        """
+                                   Utworzenie z przedzialu singletona o prawej wspolrzednej [0,1] - > 1
+        """
         self.tmp = self.left
         self.left = self.right
 
     def l_un_degenerate(self):
+        """
+                                    Powrot z przedzialu zdegnerowanego metoda l_degenerate do normalnego
+        """
         self.right = self.tmp
 
     def r_un_degenerate(self):
+        """
+                                    Powrot z przedzialu zdegnerowanego metoda l_degenerate do normalnego
+
+        """
         self.left = self.tmp
 
     @staticmethod
     def is_degenerated(interval):
+        """
+                                    Sprawdza czy przedzial jest zdegenerowany (singletonem)
+                                    :param interval: przedzial do sprawdzenia
+                                    :return: wartosc logiczna rownosci lewej i prawej strony przedzialu
+        """
         return interval.right == interval.left
 
 
 class Intervals():
+    """
+                                    Klasa reprezentujaca zbior przedzialow (K_dim)
+    """
+
     def __init__(self):
+        """
+                                    :ivar:self.intervals: lista przedzialow
+        """
         self.intervals = []
 
     def __iter__(self):
+        """
+                                    Iteracja tego obiektu jest tym samym co iteracja na self.intervals
+        """
         return iter(self.intervals)
 
     def append(self, interval):
+        """
+                                    Dodawanie przedzialow do tego obiektu to kopiowanie nowych interwalow do listy self.intervals
+                                    deepcopy uzylem zeby mozna bylo latwo rozszerzyc na dodawanie przedzialow zdegenerowanych
+                                    :param interval: przedzial do dodania
+        """
         self.intervals.append(copy.deepcopy(interval))
 
     def __eq__(self, other):
+        """
+                                    Sprawdzanie rownosci dwoch list intervals sluzy do pisania cos == Intervals
+                                    :param other: lista przedzialow do porownania z selfem
+                                    :return: czy sa rowne
+        """
         if len(self.intervals) != len(other.intervals):
             return False
         for i in range(0, len(self.intervals)):
             if self.intervals[i] != other.intervals[i]:
                 return False
         return True
-
-    def __len__(self):
-        return len(self.intervals)
 
     def __hash__(self):
         return hash(self.__repr__())
@@ -115,20 +119,33 @@ class Intervals():
         return self.__str__()
 
     def is_degenerated(self):
+        """
+                                    Sprawdza czy wszystkie przedzialy sa zdegenerwane
+                                    :return: Czy wszystkie przedzialy sa zdegenerowane
+        """
         for interval in self.intervals:
             if not Interval.is_degenerated(interval):
                 return False
         return True
 
     def __str__(self):
+        """
+                                    :return: string w postaci interwalow [a,b] [c,d] ...
+        """
         tmp = ""
         for i in self.intervals:
             tmp += str(i)
         return tmp
+
     @staticmethod
     def n_doubled(intervals):
-        i=0
+        """
+                                    Sprawdza ile przedzialow jest podwojnych (niezdegenerowanych)
+                                    :param intervals: zbior interwalow do sprawdzenia
+                                    :return: ilosc nie zdegenerowanych przedzialow
+        """
+        i = 0
         for interval in intervals.intervals:
-            if len(interval)== 2:
-                i+=1
+            if not Interval.is_degenerated(interval):
+                i += 1
         return i
