@@ -1,4 +1,4 @@
-from Structures.ElementaryCubesCreator import ElementaryCubesCreator
+from Structures.CubesCreator.ElementaryCubesCreator import ElementaryCubesCreator
 
 __author__ = 'malin'
 
