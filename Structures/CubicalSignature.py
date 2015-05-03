@@ -16,10 +16,14 @@ class CubicalSignature:
                     face.append(i[0])
                 else:
                     face.append(i)
-            if len(interval)==2:
+            faces.append(face)
+            if len(interval) == 2:
+                face = []
                 for i in self.sig:
                     if i is interval:
                         face.append(i[1])
                     else:
                         face.append(i)
-            faces.append(face)
+                faces.append(face)
+
+        return faces
