@@ -1,4 +1,5 @@
-from Structures.Interval import Interval
+from Structures.Interval_for_cubical_complex import Interval
+
 __author__ = 'malin'
 
 

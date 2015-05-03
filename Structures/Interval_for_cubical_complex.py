@@ -1,11 +1,18 @@
 __author__ = 'malin'
+import copy
 
 
 class Interval():
+    count = 0
+
     def __init__(self, x, y):
         self.left = x
         self.right = y
-
+    def __len__(self):
+        if self.is_degenerated(self):
+            return 1
+        else:
+            return 2
     def __eq__(self, other):
         """
                                     Potrzebny do porownywania elementow w secie
@@ -19,7 +26,7 @@ class Interval():
                                     Potrzebny do porownywania i dodawania elementow w secie
                                     :return:obiekt skonwertowany do stringa
         """
-        return "(%s,%s)" % (self.left, self.right)
+        return self.__str__()
 
     def __hash__(self):
         """
@@ -42,7 +49,9 @@ class Interval():
         return pointList
 
     def __str__(self):
-        return "(%s,%s)" % (self.left, self.right)
+        if (self.left == self.right):
+            return "[%s]" % self.left
+        return "[%s,%s]" % (self.left, self.right)
 
     @staticmethod
     def cross(intervalA, intervalB):
@@ -58,3 +67,68 @@ class Interval():
         out.add(Interval(intervalA.right, intervalB.left))
         out.add(Interval(intervalA.right, intervalB.right))
         return out
+
+    def l_degenerate(self):
+        self.tmp = self.right
+        self.right = self.left
+
+    def r_degenerate(self):
+        self.tmp = self.left
+        self.left = self.right
+
+    def l_un_degenerate(self):
+        self.right = self.tmp
+
+    def r_un_degenerate(self):
+        self.left = self.tmp
+
+    @staticmethod
+    def is_degenerated(interval):
+        return interval.right == interval.left
+
+
+class Intervals():
+    def __init__(self):
+        self.intervals = []
+
+    def __iter__(self):
+        return iter(self.intervals)
+
+    def append(self, interval):
+        self.intervals.append(copy.deepcopy(interval))
+
+    def __eq__(self, other):
+        if len(self.intervals) != len(other.intervals):
+            return False
+        for i in range(0, len(self.intervals)):
+            if self.intervals[i] != other.intervals[i]:
+                return False
+        return True
+
+    def __len__(self):
+        return len(self.intervals)
+
+    def __hash__(self):
+        return hash(self.__repr__())
+
+    def __repr__(self):
+        return self.__str__()
+
+    def is_degenerated(self):
+        for interval in self.intervals:
+            if not Interval.is_degenerated(interval):
+                return False
+        return True
+
+    def __str__(self):
+        tmp = ""
+        for i in self.intervals:
+            tmp += str(i)
+        return tmp
+    @staticmethod
+    def n_doubled(intervals):
+        i=0
+        for interval in intervals.intervals:
+            if len(interval)== 2:
+                i+=1
+        return i
