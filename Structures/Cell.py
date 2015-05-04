@@ -73,4 +73,4 @@ class Cell:
         return True
 
     def __str__(self):
-        return "Cell %s: id = %s, dim = %s\n" % (self.label, self.id, self.id)
+        return "Cell %s: id = %s, dim = %s\n" % (self.label, self.id, self.dim)
