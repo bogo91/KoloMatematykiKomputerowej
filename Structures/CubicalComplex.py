@@ -1,4 +1,4 @@
-from Structures.Tree import Complex
+from Structures.Complex import Complex
 
 __author__ = 'malin'
 
