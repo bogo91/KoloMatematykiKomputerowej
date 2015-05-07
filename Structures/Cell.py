@@ -1,4 +1,4 @@
-__author__ = 'malin & ingwarus'  # dobra dobra :P
+__author__ = 'malin & ingwarus'
 
 
 class Cell:
