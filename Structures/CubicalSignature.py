@@ -1,29 +1,11 @@
-__author__ = 'malin & ingwarus'
-from copy import deepcopy
+__author__ = 'ingwarus'
+#from copy import deepcopy
 
 class CubicalSignature:
 
     def __init__(self, sig):
-        self.sig = deepcopy(sig)
-        self.dim = sum(len(element) for element in sig) - len(sig)
-
+        self.sig = sig
+    def get_dim(self):
+        return sum(len(x) for x in sig) - len(sig)
     def get_faces(self):
-        faces = []
-        for interval in self.sig:
-            face = []
-            for i in self.sig:
-                if i is interval:
-                    face.append([i[0]])
-                else:
-                    face.append(i)
-            faces.append(face)
-            if len(interval) == 2:
-                face = []
-                for i in self.sig:
-                    if i is interval:
-                        face.append([i[1]])
-                    else:
-                        face.append(i)
-                faces.append(face)
-
-        return faces
+        return [CubicalSignature(self.sig[:i]+[self.sig[i][0]]+self.sig[i+1:]) for i in range(len(self.sig)) if len(self.sig[i])>1] + [CubicalSignature(self.sig[:i]+[self.sig[i][1]]+self.sig[i+1:]) for i in range(len(self.sig)) if len(self.sig[i])>1]
