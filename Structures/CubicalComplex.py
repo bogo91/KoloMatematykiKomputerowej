@@ -1,13 +1,13 @@
 from Structures.Complex import Complex
-from Structores.Complex import Cube
-__author__ = 'ingwarus'
+from Structures.Cube import Cube
 
 
 class CubicalComplex(Complex):
-    __init__(self, signatures):
-        dim=len(signatures[0])
+    def __init__(self, signatures):
+        dim=signatures[0].get_len()
         cubes=[{} for i in range(dim+1)]
         for sig in signatures:
-            if not sig in cubes[get_sig_dim(sig)]:
-                cubes[get_sig_dim(sig)][sig]=Cube(sig,cubes)
-        Complex.__init__([x.values() for x in self.cubes])
+            sig_dim=sig.get_dim()
+            if not sig in cubes[sig_dim]:
+                cubes[sig_dim][sig]=Cube(sig_dim,sig,cubes)
+        Complex.__init__(self,[x.values() for x in cubes])
