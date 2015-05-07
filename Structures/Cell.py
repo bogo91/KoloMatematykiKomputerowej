@@ -1,6 +1,3 @@
-__author__ = 'malin & ingwarus'
-
-
 class Cell:
     """
                             Cell to uogólnienie sympleksu/kostki/elementu jakiegoś bardziej chorego kompleksu
@@ -48,26 +45,16 @@ class Cell:
 
     def connect(self, cell):
         """
-                                    metoda probuje laczyc dwa celle - zwraca True jesli się udalo
+                                    metoda probuje laczyc dwa celle - zwraca True jesli się udalo (wymiary roznia sie o 1)
                                     
-                                    :param cell: do polaczenia cell
+                                    :param cell: druga komorka do polaczenia
         """
-        return Cell.connect(self, cell)
-
-    @staticmethod
-    def connect(cell_one, cell_two):
-
-        """
-                                    metoda probuje laczyc dwa celle - zwraca True jesli się udalo
-                                    :param cell_one: pierwszy cell
-                                    :param cell_two: drugi cell
-        """
-        if cell_one.dim + 1 == cell_two.dim:
-            cell_one.append_face(cell_two)
-            cell_two.append_coface(cell_one)
-        elif cell_one.dim - 1 == cell_two.dim:
-            cell_one.append_coface(cell_two)
-            cell_two.append_face(cell_one)
+        if self.dim + 1 == cell.dim:
+            self.append_coface(cell)
+            cell.append_face(self)
+        elif self.dim - 1 == cell.dim:
+            self.append_face(cell)
+            cell.append_coface(self)
         else:
             return False
         return True
