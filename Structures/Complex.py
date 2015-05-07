@@ -1,5 +1,3 @@
-__author__ = 'ingwarus'
-
 from Structures import Cell
  
 class Complex:
