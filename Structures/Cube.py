@@ -1,5 +1,5 @@
 from Structures.Cell import Cell
-__author__ = 'malin'
+__author__ = 'ingwarus'
 
 
 class Cube(Cell):
